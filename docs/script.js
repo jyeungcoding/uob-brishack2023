@@ -144,9 +144,16 @@ function drawSkeletonCam(keypoints) {
 async function activateVideoInstrct() {
     canvasInstrct.height = videoInstrct.height;
     canvasInstrct.width = videoInstrct.width;
+    videoInstrct.addEventListener("playing", makeHidden);
     videoInstrct.addEventListener("playing", predictInstrctPoses);
 }
 
+function makeHidden() {
+    videoInstrct.classList.remove("videoInstrctVis");
+    videoInstrct.classList.add("videoInstrctHid");
+    canvasInstrct.classList.remove("canvasHid");
+    canvasInstrct.classList.add("canvasVis");
+}
 
 async function predictInstrctPoses() {
     let poses = null;

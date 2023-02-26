@@ -25,14 +25,32 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.canvasHid{
+    background-color: black;
+    height: 0%;
+    width: 0%;
+    visibility: hidden;
+}
+
+.canvasVis{
+    background-color: black;
+    height: 100%;
+    width: 100%;
 }
 
 
-.videoInstrct{
+.videoInstrctVis{
     background-color: black;
-    height: 0;
-    width: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.videoInstrctHid{
+    background-color: black;
+    height: 0%;
+    width: 0%;
     visibility: hidden;
 }
 
