@@ -1,6 +1,9 @@
-class ComparePositions {
+export class ComparePositions {
     constructor(minScore) {
         this.minScore = minScore;
+        this.baseFrame = null;
+        this.userFrame = null;
+
         this.joints = {
             left_wrist: {A: 11, B: 13, C: 15},
             right_wrist:{A: 12, B: 14, C: 16}, 
@@ -11,14 +14,14 @@ class ComparePositions {
             left_ankle: {A: 23, B: 25, C: 27}, 
             right_ankle: {A: 24, B: 26, C: 28}
         }
-        this.additionalJoints = {
-            left_elbow: {A: 12, B: 11, C: 13},
-            right_elbow:{A: 11, B: 12, C: 14},
-            left_knee: {A: 11, B: 23, C: 25}, 
-            right_knee: {A: 12, B: 24, C: 26}, 
-            left_shoulder: {A: 11, B: 23, C: 25}, 
-            right_shoulder: {A: 12, B: 24, C: 26}
-        }
+        // this.additionalJoints = {
+        //     left_elbow: {A: 12, B: 11, C: 13},
+        //     right_elbow:{A: 11, B: 12, C: 14},
+        //     left_knee: {A: 11, B: 23, C: 25}, 
+        //     right_knee: {A: 12, B: 24, C: 26}, 
+        //     left_shoulder: {A: 11, B: 23, C: 25}, 
+        //     right_shoulder: {A: 12, B: 24, C: 26}
+        // }
         this.angleDiff = {
             left_wrist: 0,
             right_wrist: 0,
@@ -66,48 +69,47 @@ class ComparePositions {
     }
 
     //adds left and right shoulder, changes elbows+knees
-    additionalPoints(baseFrame, userFrame){
-        for (let key in this.additionalJoints) {
-            let points = this.getPoints(baseFrame, userFrame, key);
-            for (let point in points) {
-                //NOT SURE ABT THIS
-                if (point.score < this.minScore) {
-                    return this.angleDiff;
-                }
-            }
-            let baseAngle = this.getAngle(points[0], points[1], points[2]);
-            let userAngle = this.getAngle(points[0], points[1], points[2]);
-            if (key == "left_shoulder" || key == "right_shoulder"){
-                this.angleDiff[key] = baseAngle - userAngle;
-            }
-            else{ 
-                this.angleDiff[key] /= 2;
-                this.angleDiff[key] += (baseAngle - userAngle)/2;
-            }
-        }
-        return this.angleDiff;
-    }
+    // additionalPoints(baseFrame, userFrame){
+    //     for (let key in this.additionalJoints) {
+    //         let points = this.getPoints(baseFrame, userFrame, key);
+    //         for (let point in points) {
+    //             if (point.score < this.minScore) {
+    //                 return this.angleDiff;
+    //             }
+    //         }
+    //         let baseAngle = this.getAngle(points[0], points[1], points[2]);
+    //         let userAngle = this.getAngle(points[0], points[1], points[2]);
+    //         if (key == "left_shoulder" || key == "right_shoulder"){
+    //             this.angleDiff[key] = baseAngle - userAngle;
+    //         }
+    //         else{
+    //             this.angleDiff[key] /= 2;
+    //             this.angleDiff[key] += (baseAngle - userAngle)/2;
+    //         }
+    //     }
+    //     return this.angleDiff;
+    // }
 
-    normaliseAngleDiff(){
-        for(let i in this.angleDiff){
-            
+    validPoints(points) {
+        for (let point in points) {
+            if (point.score < this.minScore) {
+                return false;
+            }
         }
+        return true;
     }
 
     next(baseFrame, userFrame) {
         for (let key in this.joints) {
+            // points is an array with [A1, B1, C1, A2, B2, C2]
             let points = this.getPoints(baseFrame, userFrame, key);
-            for (let point in points) {
-                //NOT SURE ABT THIS
-                if (point.score < this.minScore) {
-                    return this.angleDiff;
-                }
-            }
-            let baseAngle = this.getAngle(points[0], points[1], points[2]);
-            let userAngle = this.getAngle(points[0], points[1], points[2]);
-            this.angleDiff[key] = baseAngle - userAngle;
+            
+            if (validPoints(points)) {
+                let baseAngle = this.getAngle(points[0], points[1], points[2]);
+                let userAngle = this.getAngle(points[3], points[4], points[5]);
+                this.angleDiff[key] = baseAngle - userAngle;
+            }   
         }
-        this.additionalPoints(baseFrame, userFrame);
         return this.angleDiff;
     }
 }
