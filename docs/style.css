@@ -4,6 +4,7 @@ body{
     margin: 0;
     background-color: rgb(57, 56, 56);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -20,11 +21,13 @@ body{
 
 
 .video{
+    background-color: black;
     height: 65%;
     width: 40%;
 }
 
 .self_video{
+    background-color: black;
     height: 90%;
     width: 90%;
     transform: rotateY(180deg);
@@ -46,4 +49,16 @@ body{
 
 .set_green{
     background-color: green;
+}
+
+.Button{
+    height: 5%;
+    border-radius: 10px 10px 10px 10px;
+    background: rgba(108, 105, 105, 1);
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.Button:hover {
+    cursor: pointer;
+    background: rgba(0, 200, 110, 1);
 }

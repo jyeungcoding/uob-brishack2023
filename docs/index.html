@@ -4,23 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <link rel="stylesheet" href="style.css">
     
     <title>Document</title>
 
     <!-- addinf the TensorFlow.JS dependencies for MoveNet-->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+    -->
+    <!-- Require the peer dependencies of pose-detection. -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+
+    <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
-    <script src="script.js" defer></script>
+
+    <script src="script.js" defer type="module"></script>
 </head>
 <body>
+    <button id="webcamButton" class="Button">Start webcam</button>
     <div id="wrapper" class="wrapper">
         <video width="320" height="240" controls id="tutorial" class="video">
             <source src="TestVideos/Yoga1.mp4" type="video/mp4">
         </video>
-        <div class="self_record_wrapper set_green">
+        <div id="camWrapper" class="self_record_wrapper">
             <video width="320" height="240" id="videoCam" class="self_video">
             </video>
         </div>
