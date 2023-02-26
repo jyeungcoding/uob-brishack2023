@@ -12,7 +12,10 @@ body{
 .wrapper{
     height: 90%;
     width: 100%;
-    background-color: white;
+    background-image: url("zen.JPG");
+    background-size: cover;
+    background-position: center;
+
     display: flex;
     flex-direction: row;
     align-items: center;
