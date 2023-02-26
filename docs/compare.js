@@ -1,4 +1,4 @@
-class ComparePositions {
+export class ComparePositions {
     constructor(minScore) {
         this.minScore = minScore;
         this.joints = {
