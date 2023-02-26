@@ -1,6 +1,10 @@
-let video = document.getElementById('videoCam');
-let canvas = document.getElementById('output');
-let ctx = canvas.getContext('2d');
+let videoCam = document.getElementById('videoCam');
+let canvasCam = document.getElementById('outputCam');
+let ctxCam = canvasCam.getContext('2d');
+let videoInstrct = document.getElementById("videoInstrct");
+let canvasInstrct = document.getElementById("outputInstrct")
+let ctxInstrct = canvasInstrct.getContext('2d');
+
 let detector, model;
 const scoreThreshold = 0.6;
 
@@ -9,47 +13,47 @@ async function createDetector() {
     const detectorConfig = {
         runtime: "tfjs",
         enableSmoothing: true,
-        modelType: "full"
+        modelType: "heavy"
     };
     detector = await poseDetection.createDetector(model, detectorConfig);
 }
 
-async function activateVideo() {
+async function activateVideoCam() {
     if(navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({'video': {
             width: '640',
             height: '480'
         }}).then(stream => {
-                video.srcObject = stream;
+                videoCam.srcObject = stream;
             })
-            .catch(e => {
-                console.log("Error occurred while getting the video stream");
+            .catch(() => {
+                console.log("Error occurred while getting the webcam stream");
             });
     }
-    
-    video.onloadedmetadata = () => {
-        const videoWidth = video.videoWidth;
-        const videoHeight = video.videoHeight;
 
-        video.width = videoWidth;
-        video.height = videoHeight;
-        canvas.width = videoWidth;
-        canvas.height = videoHeight;  
+    videoCam.onloadedmetadata = () => {
+        const videoWidth = videoCam.videoWidth;
+        const videoHeight = videoCam.videoHeight;
+
+        videoCam.width = videoWidth;
+        videoCam.height = videoHeight;
+        canvasCam.width = videoWidth;
+        canvasCam.height = videoHeight;
         
         // Because the image from camera is mirrored, need to flip horizontally.
-        ctx.translate(videoWidth, 0);
-        ctx.scale(-1, 1);
+        ctxCam.translate(videoWidth, 0);
+        ctxCam.scale(-1, 1);
     };
 
-    video.addEventListener("loadeddata", predictPoses);   
+    videoCam.addEventListener("loadeddata", predictCamPoses);
 }
 
-async function predictPoses() {
+async function predictCamPoses() {
     let poses = null;
     
     if (detector != null) {
         try {
-            poses = await detector.estimatePoses(video, { 
+            poses = await detector.estimatePoses(videoCam, {
                 flipHorizontal: false 
             });
         } catch (error) {
@@ -59,83 +63,204 @@ async function predictPoses() {
         }
     }
 
-    ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+    ctxCam.drawImage(videoCam, 0, 0, videoCam.videoWidth, videoCam.videoHeight);
 
     if (poses && poses.length > 0) {
         for (const pose of poses) {
             if (pose.keypoints != null) {
-                drawKeypoints(pose.keypoints);
-                drawSkeleton(pose.keypoints);
+                drawKeypointsCam(pose.keypoints);
+                drawSkeletonCam(pose.keypoints);
             }
         }
     }
 
-    window.requestAnimationFrame(predictPoses);
+    window.requestAnimationFrame(predictCamPoses);
 }
 
-function drawKeypoints(keypoints) {
-    ctx.fillStyle = 'Green';
-    ctx.strokeStyle = 'White';
-    ctx.lineWidth = 2;
+function drawKeypointsCam(keypoints) {
+    ctxCam.fillStyle = 'Green';
+    ctxCam.strokeStyle = 'White';
+    ctxCam.lineWidth = 2;
     for(let i=0; i<keypoints.length; i++) {
-        drawKeypoint(keypoints[i]);    
+        drawKeypointCam(keypoints[i]);
     }
 }
 
-function drawKeypoint(keypoint) {
+function drawKeypointCam(keypoint) {
     const radius = 4;
     if (keypoint.score >= scoreThreshold) {
       const circle = new Path2D();
       circle.arc(keypoint.x, keypoint.y, radius, 0, 2 * Math.PI);
-      ctx.fill(circle);
-      ctx.stroke(circle);
+      ctxCam.fill(circle);
+      ctxCam.stroke(circle);
     }
 }
 
 /* function drawKeypointsColor(keypoints) {
     const keypointInd = poseDetection.util.getKeypointIndexBySide(model);
-    ctx.strokeStyle = 'White';
-    ctx.lineWidth = 2;
-    ctx.fillStyle = 'Red';
+    ctxCam.strokeStyle = 'White';
+    ctxCam.lineWidth = 2;
+    ctxCam.fillStyle = 'Red';
     for (const i of keypointInd.middle) {
-        drawKeypoint(keypoints[i]);
+        drawKeypointCam(keypoints[i]);
     }
-    ctx.fillStyle = 'Green';
+    ctxCam.fillStyle = 'Green';
     for (const i of keypointInd.left) {
-        drawKeypoint(keypoints[i]);
+        drawKeypointCam(keypoints[i]);
     }
-    ctx.fillStyle = 'Orange';
+    ctxCam.fillStyle = 'Orange';
     for (const i of keypointInd.right) {
-        drawKeypoint(keypoints[i]);
+        drawKeypointCam(keypoints[i]);
     }
 } */ 
 
-function drawSkeleton(keypoints) {
+function drawSkeletonCam(keypoints) {
     const color = "#fff";
-    ctx.fillStyle = color;
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
+    ctxCam.fillStyle = color;
+    ctxCam.strokeStyle = color;
+    ctxCam.lineWidth = 2;
 
     poseDetection.util.getAdjacentPairs(model)
         .forEach(([i, j]) => {
             const kp1 = keypoints[i];
             const kp2 = keypoints[j];
             if (kp1.score >= scoreThreshold && kp2.score >= scoreThreshold) {
-                ctx.beginPath();
-                ctx.moveTo(kp1.x, kp1.y);
-                ctx.lineTo(kp2.x, kp2.y);
-                ctx.stroke();
+                ctxCam.beginPath();
+                ctxCam.moveTo(kp1.x, kp1.y);
+                ctxCam.lineTo(kp2.x, kp2.y);
+                ctxCam.stroke();
             }
     });
 }
+
+// Instructor video model and canvas stuff
+
+async function activateVideoInstrct() {
+
+    const videoWidth = videoInstrct.videoWidth;
+    const videoHeight = videoInstrct.videoHeight;
+
+    videoInstrct.width = videoWidth;
+    videoInstrct.height = videoHeight;
+    canvasInstrct.width = videoWidth;
+    canvasInstrct.height = videoHeight;
+    videoInstrct.addEventListener("playing", switchToCanvas);
+    videoInstrct.addEventListener("playing", predictInstrctPoses);
+}
+
+function switchToCanvas() {
+    videoInstrct.classList.remove("videoInstrctVis");
+    videoInstrct.classList.add("videoInstrctHid");
+    canvasInstrct.classList.remove("canvasHid");
+    canvasInstrct.classList.add("canvasVis");
+}
+
+async function predictInstrctPoses() {
+    let poses = null;
+
+    if (detector != null) {
+        try {
+            poses = await detector.estimatePoses(videoInstrct, {
+                flipHorizontal: false
+            });
+        } catch (error) {
+            detector.dispose();
+            detector = null;
+            alert(error);
+        }
+    }
+
+    ctxInstrct.drawImage(videoInstrct, 0, 0, canvasInstrct.width, canvasInstrct.height);
+
+    if (poses && poses.length > 0) {
+        for (const pose of poses) {
+            if (pose.keypoints != null) {
+                drawKeypointsInstrct(pose.keypoints);
+                drawSkeletonInstrct(pose.keypoints);
+            }
+        }
+    }
+
+
+    window.requestAnimationFrame(predictInstrctPoses);
+}
+
+
+function drawKeypointsInstrct(keypoints) {
+    ctxInstrct.fillStyle = 'Green';
+    ctxInstrct.strokeStyle = 'White';
+    ctxInstrct.lineWidth = 2;
+    for(let i=0; i<keypoints.length; i++) {
+        drawKeypointInstrct(keypoints[i]);
+    }
+}
+
+function drawKeypointInstrct(keypoint) {
+    const radius = 4;
+    if (keypoint.score >= scoreThreshold) {
+        const circle = new Path2D();
+        circle.arc(keypoint.x, keypoint.y, radius, 0, 2 * Math.PI);
+        ctxInstrct.fill(circle);
+        ctxInstrct.stroke(circle);
+    }
+}
+
+/* function drawKeypointsColor(keypoints) {
+    const keypointInd = poseDetection.util.getKeypointIndexBySide(model);
+    ctxCam.strokeStyle = 'White';
+    ctxCam.lineWidth = 2;
+    ctxCam.fillStyle = 'Red';
+    for (const i of keypointInd.middle) {
+        drawKeypointCam(keypoints[i]);
+    }
+    ctxCam.fillStyle = 'Green';
+    for (const i of keypointInd.left) {
+        drawKeypointCam(keypoints[i]);
+    }
+    ctxCam.fillStyle = 'Orange';
+    for (const i of keypointInd.right) {
+        drawKeypointCam(keypoints[i]);
+    }
+} */
+
+function drawSkeletonInstrct(keypoints) {
+    const color = "#fff";
+    ctxInstrct.fillStyle = color;
+    ctxInstrct.strokeStyle = color;
+    ctxInstrct.lineWidth = 2;
+
+    poseDetection.util.getAdjacentPairs(model)
+        .forEach(([i, j]) => {
+            const kp1 = keypoints[i];
+            const kp2 = keypoints[j];
+            if (kp1.score >= scoreThreshold && kp2.score >= scoreThreshold) {
+                ctxInstrct.beginPath();
+                ctxInstrct.moveTo(kp1.x, kp1.y);
+                ctxInstrct.lineTo(kp2.x, kp2.y);
+                ctxInstrct.stroke();
+            }
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
 
 async function app() {
     //Load the model and create a detector object
     await createDetector();
 
     //Enable camera and activate video
-    await activateVideo();
-};
+    await activateVideoCam();
+    await activateVideoInstrct();
+}
 
 app();
 
