@@ -49,10 +49,91 @@ class ComparePositions {
     }
 }
 
-let comp = new ComparePositions();
-comp.next(null, null)
-let object1 = {x: 0.5, y: 0.75, z: 1};
-let object2 = {x: -1, y: 0.5, z: 0.25};
-let object3 = {x: 1, y: 1, z: 1};
 
-console.log("angle: " + comp.getAngle(object1, object2, object3) * 360 / (2 * Math.PI));
+
+let keypoints3D1 = [
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "nose"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_eye_inner"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_eye"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_eye_outer"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_eye_inner"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_eye"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_eye_outer"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_ear"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_ear"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "mouth_left"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "mouth_right"},
+{x: 0.20, y: 0.70, z: 0.10, score: 0.99, name: "left_shoulder"},
+{x: -0.22, y: 0.75, z: 0.05, score: 0.99, name: "right_shoulder"},
+{x: 0.4, y: 0.55, z: 0.15, score: 0.99, name: "left_elbow"},
+{x: -0.4, y: 0.7, z: 0.20, score: 0.99, name: "right_elbow"},
+{x: 0.65, y: 0.30, z: 0.18, score: 0.99, name: "left_wrist"},
+{x: -0.3, y: 0.65, z: 0.35, score: 0.99, name: "right_wrist"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_pinky"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_pinky"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_index"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_index"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_thumb"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_thumb"},
+{x: 0.2, y: 0.05, z: 0.02, score: 0.99, name: "left_hip"},
+{x: -0.13, y: -0.05, z: 0.0, score: 0.99, name: "right_hip"},
+{x: 0.3, y: -0.3, z: 0.3, score: 0.99, name: "left_knee"},
+{x: -0.15, y: -0.35, z: 0.2, score: 0.99, name: "right_knee"},
+{x: 0.35, y: -0.6, z: 0.4, score: 0.99, name: "left_ankle"},
+{x: 0.3, y: -0.64, z: 0.1, score: 0.99, name: "right_ankle"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_heel"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_heel"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_foot_index"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_foot_index"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "bodyCenter"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "forehead"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "leftThumb"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "leftHand"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "rightThumb"},
+{x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "rightHand"}
+];
+
+let keypoints3D2 = [
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "nose"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_eye_inner"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_eye"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_eye_outer"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_eye_inner"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_eye"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_eye_outer"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_ear"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_ear"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "mouth_left"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "mouth_right"},
+    {x: 0.18, y: 0.60, z: 0.07, score: 0.99, name: "left_shoulder"},
+    {x: -0.29, y: 0.72, z: -0.02, score: 0.99, name: "right_shoulder"},
+    {x: 0.35, y: 0.48, z: 0.12, score: 0.99, name: "left_elbow"},
+    {x: -0.47, y: 0.64, z: 0.14, score: 0.99, name: "right_elbow"},
+    {x: 0.70, y: 0.34, z: 0.25, score: 0.99, name: "left_wrist"},
+    {x: -0.36, y: 0.58, z: 0.29, score: 0.99, name: "right_wrist"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_pinky"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_pinky"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_index"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_index"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_thumb"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_thumb"},
+    {x: 0.15, y: -0.3, z: -0.06, score: 0.99, name: "left_hip"},
+    {x: -0.22, y: -0.12, z: -0.07, score: 0.99, name: "right_hip"},
+    {x: 0.21, y: -0.36, z: 0.25, score: 0.99, name: "left_knee"},
+    {x: -0.11, y: -0.42, z: 0.18, score: 0.99, name: "right_knee"},
+    {x: 0.27, y: -0.66, z: 0.35, score: 0.99, name: "left_ankle"},
+    {x: 0.24, y: -0.70, z: 0.04, score: 0.99, name: "right_ankle"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_heel"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_heel"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "left_foot_index"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "right_foot_index"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "bodyCenter"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "forehead"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "leftThumb"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "leftHand"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "rightThumb"},
+    {x: 0.65, y: 0.11, z: 0.05, score: 0.99, name: "rightHand"}
+  ];
+
+  let comp = new ComparePositions();
+  comp.next(keypoints3D1, keypoints3D2);
