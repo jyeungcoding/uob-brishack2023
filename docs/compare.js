@@ -70,6 +70,7 @@ class ComparePositions {
         for (let key in this.additionalJoints) {
             let points = this.getPoints(baseFrame, userFrame, key);
             for (let point in points) {
+                //NOT SURE ABT THIS
                 if (point.score < this.minScore) {
                     return this.angleDiff;
                 }
@@ -79,12 +80,18 @@ class ComparePositions {
             if (key == "left_shoulder" || key == "right_shoulder"){
                 this.angleDiff[key] = baseAngle - userAngle;
             }
-            else{
+            else{ 
                 this.angleDiff[key] /= 2;
                 this.angleDiff[key] += (baseAngle - userAngle)/2;
             }
         }
         return this.angleDiff;
+    }
+
+    normaliseAngleDiff(){
+        for(let i in this.angleDiff){
+            
+        }
     }
 
     next(baseFrame, userFrame) {
@@ -100,6 +107,7 @@ class ComparePositions {
             let userAngle = this.getAngle(points[0], points[1], points[2]);
             this.angleDiff[key] = baseAngle - userAngle;
         }
+        this.additionalPoints(baseFrame, userFrame);
         return this.angleDiff;
     }
 }
