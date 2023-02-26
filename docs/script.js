@@ -40,7 +40,7 @@ async function activateVideoCam() {
         canvasCam.width = videoWidth;
         canvasCam.height = videoHeight;
         
-        // Because the image from camera is mirrored, need to flip horizontally.
+        // Flip the camera image, as it is mirrored by default
         ctxCam.translate(videoWidth, 0);
         ctxCam.scale(-1, 1);
     };
