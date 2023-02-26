@@ -104,7 +104,7 @@ export class ComparePositions {
             // points is an array with [A1, B1, C1, A2, B2, C2]
             let points = this.getPoints(baseFrame, userFrame, key);
             
-            if (validPoints(points)) {
+            if (this.validPoints(points)) {
                 let baseAngle = this.getAngle(points[0], points[1], points[2]);
                 let userAngle = this.getAngle(points[3], points[4], points[5]);
                 this.angleDiff[key] = baseAngle - userAngle;
