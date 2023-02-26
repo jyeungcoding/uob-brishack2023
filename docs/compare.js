@@ -1,9 +1,6 @@
 export class ComparePositions {
     constructor(minScore) {
         this.minScore = minScore;
-        this.baseFrame = null;
-        this.userFrame = null;
-
         this.joints = {
             left_wrist: {A: 11, B: 13, C: 15},
             right_wrist:{A: 12, B: 14, C: 16}, 
@@ -99,6 +96,12 @@ export class ComparePositions {
         return true;
     }
 
+    normalise() {
+        for (let key in this.angleDiff) {
+            this.angleDiff[key] = Math.abs(this.angleDiff[key] / Math.PI);
+        }
+    }
+
     next(baseFrame, userFrame) {
         for (let key in this.joints) {
             // points is an array with [A1, B1, C1, A2, B2, C2]
@@ -110,6 +113,7 @@ export class ComparePositions {
                 this.angleDiff[key] = baseAngle - userAngle;
             }   
         }
+        this.normalise();
         return this.angleDiff;
     }
 }
