@@ -98,17 +98,18 @@ function drawKeypointsCam(keypoints) {
 function drawKeypointCam(keypoint) {
     const keyName = keypoint["name"];
     if (currentResult != undefined && keyName in currentResult) {
-        if (Math.abs(currentResult[keyName] > 0.2)) {
-            ctxCam.fillStyle = 'Red';
-            ctxCam.strokeStyle = 'Red';
-            ctxCam.lineWidth = 5;
-        }
+        var red = currentResult[keyName] * 255;
+        var green = 255 - red;
+        ctxCam.fillStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
+        ctxCam.strokeStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
+        ctxCam.lineWidth = 5;
+        
         const radius = 4;
         if (keypoint.score >= scoreThreshold) {
-        const circle = new Path2D();
-        circle.arc(keypoint.x, keypoint.y, radius, 0, 2 * Math.PI);
-        ctxCam.fill(circle);
-        ctxCam.stroke(circle);
+            const circle = new Path2D();
+            circle.arc(keypoint.x, keypoint.y, radius, 0, 2 * Math.PI);
+            ctxCam.fill(circle);
+            ctxCam.stroke(circle);
         }
     }
     
@@ -147,13 +148,18 @@ function drawSkeletonCam(keypoints) {
             const keyName1 = kp1["name"];
             const keyName2 = kp2["name"];
             if (currentResult != undefined && keyName1 in currentResult && keyName2 in currentResult) {
-                if (Math.abs(currentResult[keyName1]) > 0.5 || Math.abs(currentResult[keyName2]) > 0.5) {
-                    var red = (currentResult[keyName1] + currentResult[keyName2]) * 125;
-                    var green = 255 - red;
-                    ctxCam.fillStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
-                    ctxCam.strokeStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
-                    ctxCam.lineWidth = 5;
-                }
+                //if (currentResult[keyName1] > 0.5) {
+                console.log(currentResult[keyName1]);
+                console.log(currentResult[keyName2]);
+                var red = (currentResult[keyName1] + currentResult[keyName2]) * (255 / 2);
+                var green = 255 - red;
+                console.log("hello");
+                console.log(red + ", " + green);
+
+                ctxCam.fillStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
+                ctxCam.strokeStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
+                ctxCam.lineWidth = 5;
+                //}
                 if (kp1.score >= scoreThreshold && kp2.score >= scoreThreshold) {
                     ctxCam.beginPath();
                     ctxCam.moveTo(kp1.x, kp1.y);
