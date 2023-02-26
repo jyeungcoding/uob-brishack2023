@@ -13,7 +13,7 @@ async function createDetector() {
     const detectorConfig = {
         runtime: "tfjs",
         enableSmoothing: true,
-        modelType: "full"
+        modelType: "heavy"
     };
     detector = await poseDetection.createDetector(model, detectorConfig);
 }
@@ -26,8 +26,8 @@ async function activateVideoCam() {
         }}).then(stream => {
                 videoCam.srcObject = stream;
             })
-            .catch(e => {
-                console.log("Error occurred while getting the video stream");
+            .catch(() => {
+                console.log("Error occurred while getting the webcam stream");
             });
     }
 
@@ -133,13 +133,7 @@ function drawSkeletonCam(keypoints) {
     });
 }
 
-
-
-
-
-
-// New code for the instruction video below!!!
-
+// Instructor video model and canvas stuff
 
 async function activateVideoInstrct() {
 
@@ -266,7 +260,7 @@ async function app() {
     //Enable camera and activate video
     await activateVideoCam();
     await activateVideoInstrct();
-};
+}
 
 app();
 
