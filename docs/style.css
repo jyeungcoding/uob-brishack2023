@@ -9,17 +9,39 @@ body{
 }
 
 .wrapper{
-    height: 80vmin;
-    width: 80vmin;
-    background-color: rgb(57, 56, 56);
+    height: 90%;
+    width: 100%;
+    background-color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-.video_wrapper{
-    height: 80%;
-    width: 80%;
-    padding: 10%;
+
+.video{
+    height: 65%;
+    width: 40%;
+}
+
+.self_video{
+    height: 90%;
+    width: 90%;
+    
+}
+
+.self_record_wrapper{
+    height: 72%;
+    width: 44%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.set_red{
+    background-color: red;
+}
+
+.set_green{
+    background-color: green;
 }
