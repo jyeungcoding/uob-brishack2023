@@ -27,7 +27,9 @@ body{
 .self_video{
     height: 90%;
     width: 90%;
-    
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 .self_record_wrapper{
