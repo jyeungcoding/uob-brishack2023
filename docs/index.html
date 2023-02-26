@@ -19,17 +19,17 @@
     -->
     <!-- Require the peer dependencies of pose-detection. -->
     
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 
     <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
-
-    <script src="script.js" defer type="module"></script>
+    <script src="script.js" defer></script>
+    
 </head>
-<body>
+<!--
     <button id="webcamButton" class="Button">Start webcam</button>
     <div id="wrapper" class="wrapper">
         <video width="320" height="240" controls id="tutorial" class="video">
@@ -38,6 +38,18 @@
         <div id="camWrapper" class="self_record_wrapper">
             <video width="320" height="240" id="videoCam" class="self_video">
             </video>
+        </div>
+    </div>
+-->
+<body>
+    <button id="webcamButton" class="Button">Start webcam</button>
+    <div id="wrapper" class="wrapper">
+        <video width="320" height="240" controls id="tutorial" class="video">
+            <source src="TestVideos/Yoga1.mp4" type="video/mp4">
+        </video>
+        <div id="camWrapper" class="self_record_wrapper">
+            <canvas id="output"></canvas>
+            <video id="videoCam" width="320" height="240" autoplay class="self_video"></video>
         </div>
     </div>
 </body>
