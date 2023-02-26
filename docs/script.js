@@ -176,7 +176,7 @@ async function predictInstrctPoses() {
         }
     }
 
-    ctxInstrct.drawImage(videoInstrct, 0, 0, canvasInstrct.width, canvasInstrct.width);
+    ctxInstrct.drawImage(videoInstrct, 0, 0, canvasInstrct.width, canvasInstrct.height);
 
     if (poses && poses.length > 0) {
         for (const pose of poses) {
