@@ -2,3 +2,4 @@
 *.vscode
 docs/test.js
 test.js
+*.DS_Store

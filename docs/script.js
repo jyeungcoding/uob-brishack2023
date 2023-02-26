@@ -317,7 +317,6 @@ function setCamWrapperGreen() {
 }
 
 
-
 async function app() {
     //Load the model and create a detector object
     await createDetector();
