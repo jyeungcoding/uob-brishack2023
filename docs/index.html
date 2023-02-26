@@ -9,7 +9,6 @@
     
     <title>Document</title>
 
-    <!-- addinf the TensorFlow.JS dependencies for MoveNet-->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
 
@@ -17,14 +16,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
     -->
-    <!-- Require the peer dependencies of pose-detection. -->
-    
+    <!-- Adding TF libraries etc. -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
-
-    <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
-
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
     <script src="script.js" defer></script>
     
@@ -45,14 +40,14 @@
     <button id="webcamButton" class="Button">Start webcam</button>
     <div id="wrapper" class="wrapper">
         <div id="InstrctWrapper" class="video_wrapper">
-            <canvas id="outputInstrct" width="320" height="240" class="canvasHid"></canvas>
-            <video id="videoInstrct" width="320" height="240" controls class="videoInstrctVis">
+            <canvas id="outputInstrct" class="canvasHid"></canvas>
+            <video id="videoInstrct" controls class="videoInstrctVis">
                 <source src="TestVideos/Yoga1.mp4" type="video/mp4">
             </video>
         </div>
         <div id="camWrapper" class="video_wrapper">
             <canvas id="outputCam"></canvas>
-            <video id="videoCam" width="320" height="240" autoplay class="self_video"></video>
+            <video id="videoCam" autoplay class="self_video"></video>
         </div>
     </div>
 </body>
