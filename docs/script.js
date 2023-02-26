@@ -142,13 +142,19 @@ function drawSkeletonCam(keypoints) {
 
 
 async function activateVideoInstrct() {
-    canvasInstrct.height = videoInstrct.height;
-    canvasInstrct.width = videoInstrct.width;
-    videoInstrct.addEventListener("playing", makeHidden);
+
+    const videoWidth = videoInstrct.videoWidth;
+    const videoHeight = videoInstrct.videoHeight;
+
+    videoInstrct.width = videoWidth;
+    videoInstrct.height = videoHeight;
+    canvasInstrct.width = videoWidth;
+    canvasInstrct.height = videoHeight;
+    videoInstrct.addEventListener("playing", switchToCanvas);
     videoInstrct.addEventListener("playing", predictInstrctPoses);
 }
 
-function makeHidden() {
+function switchToCanvas() {
     videoInstrct.classList.remove("videoInstrctVis");
     videoInstrct.classList.add("videoInstrctHid");
     canvasInstrct.classList.remove("canvasHid");
@@ -170,7 +176,7 @@ async function predictInstrctPoses() {
         }
     }
 
-    ctxInstrct.drawImage(videoInstrct, 0, 0, videoInstrct.videoWidth, videoInstrct.videoHeight);
+    ctxInstrct.drawImage(videoInstrct, 0, 0, canvasInstrct.width, canvasInstrct.width);
 
     if (poses && poses.length > 0) {
         for (const pose of poses) {
