@@ -19,11 +19,21 @@ body{
     justify-content: space-evenly;
 }
 
+.video_wrapper{
+    height: 72%;
+    width: 44%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.video{
+}
+
+
+.videoInstrct{
     background-color: black;
-    height: 65%;
-    width: 40%;
+    height: 0;
+    width: 0;
+    visibility: hidden;
 }
 
 .self_video{

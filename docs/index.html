@@ -44,11 +44,14 @@
 <body>
     <button id="webcamButton" class="Button">Start webcam</button>
     <div id="wrapper" class="wrapper">
-        <video width="320" height="240" controls id="tutorial" class="video">
-            <source src="TestVideos/Yoga1.mp4" type="video/mp4">
-        </video>
-        <div id="camWrapper" class="self_record_wrapper">
-            <canvas id="output"></canvas>
+        <div id="InstrctWrapper" class="video_wrapper">
+            <canvas id="outputInstrct"></canvas>
+            <video id="videoInstrct" width="320" height="240" controls class="video">
+                <source src="TestVideos/Yoga1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="camWrapper" class="video_wrapper">
+            <canvas id="outputCam"></canvas>
             <video id="videoCam" width="320" height="240" autoplay class="self_video"></video>
         </div>
     </div>
