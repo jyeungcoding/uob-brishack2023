@@ -28,11 +28,12 @@ body{
 
 .self_video{
     background-color: black;
-    height: 90%;
-    width: 90%;
+    height: 0%;
+    width: 0%;
     transform: rotateY(180deg);
-    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
-    -moz-transform:rotateY(180deg); /* Firefox */
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg); 
+    visibility: hidden;
 }
 
 .self_record_wrapper{
