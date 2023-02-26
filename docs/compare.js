@@ -1,63 +1,49 @@
 class ComparePositions {
     constructor() {
-        this.accuracy = {
-            left_wrist: null,
-            right_wrist: null,
-            left_elbow: null,
-            right_elbow: null,
-            left_knee: null,
-            right_knee: null,
-            left_ankle: null,
-            right_ankle: null
-        };
         this.joints = {
-            left_wrist: [11, 13, 15],
-            right_wrist: [12, 14, 16], 
-            left_elbow: [13, 11, 23],
-            right_elbow: [14, 12, 24], 
-            left_knee: [24, 23, 25], 
-            right_knee: [23, 24, 26], 
-            left_ankle: [23, 25, 27], 
-            right_ankle: [24, 26, 28]
+            left_wrist: {A: 11, B: 13, C: 15, acc: null},
+            right_wrist:{A: 12, B: 14, C: 16, acc: null}, 
+            left_elbow: {A: 13, B: 11, C: 23, acc: null},
+            right_elbow:{A: 14, B: 12, C: 24, acc: null},
+            left_knee: {A: 24, B: 23, C: 25, acc: null}, 
+            right_knee: {A: 23, B: 24, C: 26, acc: null}, 
+            left_ankle: {A: 23, B: 25, C: 27, acc: null}, 
+            right_ankle: {A: 24, B: 26, C: 28, acc: null}
         }
+        this.jointsKeys = Object.keys(this.joints);
     }
 
-    getAngle(keyPointA, keyPointB, keyPointC) {
-        let ba = [
-            keyPointA.x - keyPointB.x,
-            keyPointA.y - keyPointB.y,
-            keyPointA.z - keyPointB.z
+    getAngle(pointA, pointB, pointC) {
+        let BA = [
+            pointA.x - pointB.x,
+            pointA.y - pointB.y,
+            pointA.z - pointB.z
         ];
-        let bc = [
-            keyPointC.x - keyPointB.x,
-            keyPointC.y - keyPointB.y,
-            keyPointC.z - keyPointB.z
+        let BC = [
+            pointC.x - pointB.x,
+            pointC.y - pointB.y,
+            pointC.z - pointB.z
         ];
 
-        let dot = ba[0] * bc[0] + ba[1] * bc[1] + ba[2] * bc[2];
-
-        console.log("dot: " + dot);
-
-        let absBA = Math.sqrt(ba[0] ** 2 + ba[1] ** 2 + ba[2] ** 2);
-        let absBC = Math.sqrt(bc[0] ** 2 + bc[1] ** 2 + bc[2] ** 2);
-
+        let dot = BA[0] * BC[0] + BA[1] * BC[1] + BA[2] * BC[2];
+        let absBA = Math.sqrt(BA[0] ** 2 + BA[1] ** 2 + BA[2] ** 2);
+        let absBC = Math.sqrt(BA[0] ** 2 + BA[1] ** 2 + BA[2] ** 2);
         return Math.acos(dot / (absBA * absBC));
     }
 
     next(baseFrame, userFrame) {
-        console.log("hello world");
-        for (let key in Object.keys(this.joints)) {
+        for (let key in this.jointsKeys) {
             let baseAngle = this.getAngle(
-                baseFrame.keypoints3D[this.joints[key][0]], 
-                baseFrame.keypoints3D[this.joints[key][1]], 
-                baseFrame.keypoints3D[this.joints[key][2]]
+                baseFrame.keypoints3D[this.joints[key].A], 
+                baseFrame.keypoints3D[this.joints[key].B], 
+                baseFrame.keypoints3D[this.joints[key].C]
             );
             let userAngle = this.getAngle(
-                userFrame.keypoints3D[this.joints[key][0]], 
-                userFrame.keypoints3D[this.joints[key][1]], 
-                userFrame.keypoints3D[this.joints[key][2]]
+                userFrame.keypoints3D[this.joints[key].A], 
+                userFrame.keypoints3D[this.joints[key].B], 
+                userFrame.keypoints3D[this.joints[key].C]
             );
-            this.accuracy[key] = baseAngle - userAngle;
+            this.joints[key].acc = baseAngle - userAngle;
         }
         return this.accuracy;
     }
