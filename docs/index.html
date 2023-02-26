@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    
     <title>Document</title>
 
     <!-- addinf the TensorFlow.JS dependencies for MoveNet-->
@@ -12,15 +13,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div id="wrapper" class="wrapper">
         <video width="320" height="240" controls id="tutorial" class="video">
-            <source src="" type="video/mp4">
+            <source src="../TestVideos/Yoga1.mp4" type="video/mp4">
         </video>
         <div class="self_record_wrapper set_green">
-            <video width="320" height="240" controls id="self_recording" class="self_video">
-                <source src="" type="video/mp4">
+            <video width="320" height="240" id="videoCam" class="self_video">
             </video>
         </div>
     </div>
