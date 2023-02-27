@@ -37,7 +37,6 @@ export class ComparePositions {
     }
     
     getScore() {
-        this.calculateScore();
         return this.score;
     }
 
@@ -45,7 +44,7 @@ export class ComparePositions {
         this.score = 50;
     }
 
-    calculateScore () {
+    calculateScore() {
         let sum = 0;
         for (let key in this.angleDiff) {
             if (key != 'left_wrist' && key != 'right_wrist' 
