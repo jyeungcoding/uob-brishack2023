@@ -8,7 +8,8 @@ let videoCam = document.getElementById('videoCam');
 let canvasCam = document.getElementById('outputCam');
 let ctxCam = canvasCam.getContext('2d');
 let videoInstrct = document.getElementById("videoInstrct");
-let canvasInstrct = document.getElementById("outputInstrct")
+let canvasInstrct = document.getElementById("outputInstrct");
+let sourceVideo = document.getElementById("source");
 
 let posesCam, posesVid, currentResult;
 
@@ -193,8 +194,13 @@ function drawSkeletonCam(keypoints) {
 
 
 
-async function activateVideoInstrct() {
+async function activateVideoInstrct(event) {
+    var src= "TestVideos/" + event.target.files[0].name;
+    sourceVideo.src = src;
+    videoInstrct.load();
+    videoInstrct.play();
 
+    /*
     const videoWidth = videoInstrct.videoWidth;
     const videoHeight = videoInstrct.videoHeight;
 
@@ -202,13 +208,16 @@ async function activateVideoInstrct() {
     videoInstrct.setAttribute("width", videoWidth);
     videoInstrct.setAttribute("height", videoHeight);
 
-    videoInstrct.width = videoWidth;
-    videoInstrct.height = videoHeight;
+     */
+
+    videoInstrct.width = 640;
+    videoInstrct.height = 360;
     videoInstrct.addEventListener("playing", predictInstrctPoses);
 }
 
 
 async function predictInstrctPoses() {
+    console.log(videoInstrct);
     let poses = null;
 
     if (detector != null) {
@@ -223,15 +232,18 @@ async function predictInstrctPoses() {
         }
         posesVid = poses;
 
-        if (posesVid.length > 0 && posesCam.length > 0) {
-            currentResult = comparePositions.next(posesVid[0], posesCam[0]);
+        if (posesVid !== undefined && posesCam !== undefined) {
+            if (posesVid.length > 0 && posesCam.length > 0) {
+                currentResult = comparePositions.next(posesVid[0], posesCam[0]);
+            }
         }
+
         
     }
-
     window.requestAnimationFrame(predictInstrctPoses);
 }
 
+/*
 async function app() {
     //Load the model and create a detector object
     await createDetector();
@@ -242,6 +254,8 @@ async function app() {
 }
 
 app();
+
+ */
 
 document.getElementById("videoButton1").onclick = function() {
     let video = document.getElementById("videoInstrct");
@@ -282,3 +296,24 @@ document.getElementById("scoreSave").onclick = function() {
 document.getElementById("scoreClear").onclick = function() {
     ScoreBoard.clearScores();
 }
+
+
+
+
+
+var myFile = document.getElementById("myFile");
+
+async function combine(event) {
+    if (event.target.files && event.target.files[0]) {
+        await createDetector();
+        await activateVideoCam();
+        await activateVideoInstrct(event);
+    }
+}
+
+function handleFileSelect(event) {
+    console.log(event.target.files);
+    combine(event);
+}
+
+myFile.addEventListener('change', handleFileSelect);
