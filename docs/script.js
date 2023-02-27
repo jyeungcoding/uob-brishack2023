@@ -1,4 +1,4 @@
-import { ComparePositions } from "./compare.js"
+import { ComparePositions } from "./ComparePositions.js"
 
 const MIN_ACCURACY = 0.5;
 let comparePositions = new ComparePositions(MIN_ACCURACY);
