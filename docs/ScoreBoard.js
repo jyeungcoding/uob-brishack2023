@@ -8,7 +8,7 @@ export class ScoreBoard {
             scoreBoard.pop();
         }
         for (let i = 0; i < 20; i += 2) {
-            if (scoreBoard[i] != null && scoreBoard[i + 1] != null) {
+            if (scoreBoard[i] != null && scoreBoard[i].length != 0 && scoreBoard[i + 1] != null) {
                 localStorage.setItem('fileName' + i / 2, scoreBoard[i]);
                 localStorage.setItem('score' + i / 2, scoreBoard[i + 1]);
             }
