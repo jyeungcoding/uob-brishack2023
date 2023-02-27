@@ -5,10 +5,12 @@ const MIN_ACCURACY = 0.5;
 let comparePositions = new ComparePositions(MIN_ACCURACY);
 
 let videoCam = document.getElementById('videoCam');
-let canvasCam = document.getElementById('outputCam');
-let ctxCam = canvasCam.getContext('2d');
+let canvasCam;// = document.getElementById('outputCam');
+let ctxCam;// = canvasCam.getContext('2d');
 let videoInstrct = document.getElementById("videoInstrct");
 let sourceVideo = document.getElementById("source");
+let camWrapper = document.getElementById("camWrapper");
+let instructions = document.getElementById("instructions");
 
 let posesCam, posesVid, currentResult;
 
@@ -27,6 +29,7 @@ async function createDetector() {
 }
 
 async function activateVideoCam() {
+    console.log(camWrapper);
     if(navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({'video': {
             width: '640',
@@ -281,6 +284,12 @@ document.getElementById("scoreClear").onclick = function() {
 var myFile = document.getElementById("myFile");
 
 async function combine(event) {
+    instructions.remove();
+    canvasCam = document.createElement("canvas");
+    canvasCam.setAttribute('id', 'outputCam');
+    camWrapper.appendChild(canvasCam);
+    canvasCam = document.getElementById('outputCam');
+    ctxCam = canvasCam.getContext('2d');
     if (event.target.files && event.target.files[0]) {
         await createDetector();
         await activateVideoCam();
@@ -288,14 +297,17 @@ async function combine(event) {
     }
 }
 
-function handleFileSelect(event) {
-    combine(event);
-}
 
-myFile.addEventListener('change', handleFileSelect);
+myFile.addEventListener('change', combine);
 
 
 async function startVideo(name) {
+    instructions.remove();
+    canvasCam = document.createElement("canvas");
+    canvasCam.setAttribute('id', 'outputCam');
+    camWrapper.appendChild(canvasCam);
+    canvasCam = document.getElementById('outputCam');
+    ctxCam = canvasCam.getContext('2d');
     await createDetector();
     await activateVideoCam();
     await activateVideoInstrct(name);
