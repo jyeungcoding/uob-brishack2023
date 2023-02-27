@@ -241,7 +241,15 @@ async function app() {
 
 app();
 
-
-
+function selectVideo(vidNum) {
+    let src = document.getElementById("source");
+    if (vidNum === 1) {
+        src.setAttribute("src", "TestVideos/Yoga1.mp4")
+    } else if (vidNum === 2) {
+        src.setAttribute("src", "TestVideos/Yoga2.mp4")
+    } else if (vidNum === 3) {
+        src.setAttribute("src", "TestVideos/Yoga3.mp4")
+    }
+}
 
 

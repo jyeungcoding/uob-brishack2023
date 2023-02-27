@@ -24,7 +24,17 @@
 </head>
 <body>
     <nav class="banner">
-        <h1>Yoga Companion</h1>
+        <div class="dropdown">
+            <button class="dropbtn">Choose your video</button>
+            <div class="dropdown-content">
+                <button onclick="selectVideo(1);">Video 1</button>
+                <button onclick="selectVideo(2);">Video 2</button>
+                <button onclick="selectVideo(3);">Video 3</button>
+            </div>
+        </div>
+        <div class="title">
+            <h1>Yoga Companion</h1>
+        </div>
     </nav>
     <div id="wrapper" class="wrapper">
         <div id="score" class="no_content"></div>
@@ -40,9 +50,5 @@
             </div>
         </div>
     </div>
-        <!-- <input type="file" accept="video/*" id="input"/> -->
-        <!--
-        <button id="webcamButton" class="Button">Start webcam</button>
-        -->
 </body>
 </html>
