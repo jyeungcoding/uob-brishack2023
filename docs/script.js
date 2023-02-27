@@ -245,22 +245,32 @@ async function predictInstrctPoses() {
 
 document.getElementById("videoButton1").onclick = function() {
     comparePositions.resetScore();
-    let video = document.getElementById("videoInstrct");
-    let source = document.getElementById("source");
     startVideo("Yoga1.mp4");
 }
 
 document.getElementById("videoButton2").onclick = function() {
     comparePositions.resetScore();
-    let video = document.getElementById("videoInstrct");
-    let source = document.getElementById("source");
     startVideo("Yoga2.mp4");
 }
 document.getElementById("videoButton3").onclick = function() {
     comparePositions.resetScore();
-    let video = document.getElementById("videoInstrct");
-    let source = document.getElementById("source");
-    startVideo("Yoga2.mp4");
+    startVideo("Yoga3.mp4");
+}
+document.getElementById("videoButton4").onclick = function() {
+    comparePositions.resetScore();
+    startVideo("Yoga4.mp4");
+}
+document.getElementById("videoButton5").onclick = function() {
+    comparePositions.resetScore();
+    startVideo("Yoga5.mp4");
+}
+document.getElementById("videoButton6").onclick = function() {
+    comparePositions.resetScore();
+    startVideo("Yoga6.mp4");
+}
+document.getElementById("videoButton7").onclick = function() {
+    comparePositions.resetScore();
+    startVideo("Yoga7.mp4");
 }
 
 document.getElementById("scoreView").onclick = function() {
