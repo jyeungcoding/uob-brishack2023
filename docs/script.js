@@ -145,6 +145,8 @@ function drawSkeletonCam(keypoints) {
                             console.log(score);
                             console.log(currentResult);
                             const scoreElement = document.getElementById("score");
+                            scoreElement.classList.remove("no_content");
+                            scoreElement.classList.add("score");
                             scoreElement.innerHTML = Math.round(score);
                         }
                     }
