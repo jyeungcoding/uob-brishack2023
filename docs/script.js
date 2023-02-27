@@ -149,11 +149,9 @@ function drawSkeletonCam(keypoints) {
                             console.log(score);
                             console.log(currentResult);
                             const scoreElement = document.getElementById("score");
-                            scoreElement.classList.remove("no_content");
-                            scoreElement.classList.add("score");
                             let g = score * (255 / 100);
                             let r = 255 - g;
-                            scoreElement.innerHTML = "Score: " + Math.round(score);
+                            scoreElement.innerHTML = "Score: " + Math.floor(score);
                             scoreElement.style.backgroundColor = "rgba(" + r + ", " + g + ", 100, 0.7)"
                         }
                     }
