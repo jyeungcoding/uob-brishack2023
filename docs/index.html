@@ -9,35 +9,23 @@
     
     <title>Document</title>
 
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
-    -->
     <!-- Adding TF libraries etc. -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
     <script src="script.js" defer type="module"></script>
+
+    <!-- Adding Font libraries -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
     
 </head>
-<!--
-    <button id="webcamButton" class="Button">Start webcam</button>
-    <div id="wrapper" class="wrapper">
-        <video width="320" height="240" controls id="tutorial" class="video">
-            <source src="TestVideos/Yoga1.mp4" type="video/mp4">
-        </video>
-        <div id="camWrapper" class="self_record_wrapper">
-            <video width="320" height="240" id="videoCam" class="self_video">
-            </video>
-        </div>
-    </div>
--->
 <body>
-    <button id="webcamButton" class="Button">Start webcam</button>
+    <div class="banner">
+        <h1>Yoga Companion</h1>
+    </div>
     <div id="wrapper" class="wrapper">
         
         <div id="InstrctWrapper" class="video_wrapper">
@@ -51,5 +39,6 @@
             <video id="videoCam" autoplay class="self_video"></video>
         </div>
     </div>
+    <button id="webcamButton" class="Button">Start webcam</button>
 </body>
 </html>
