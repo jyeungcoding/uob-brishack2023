@@ -8,7 +8,6 @@ let videoCam = document.getElementById('videoCam');
 let canvasCam = document.getElementById('outputCam');
 let ctxCam = canvasCam.getContext('2d');
 let videoInstrct = document.getElementById("videoInstrct");
-let canvasInstrct = document.getElementById("outputInstrct");
 let sourceVideo = document.getElementById("source");
 
 let posesCam, posesVid, currentResult;
@@ -146,8 +145,6 @@ function drawSkeletonCam(keypoints) {
                         let score = comparePositions.getScore();
                         count += 1;
                         if (count % 15 == 0) {
-                            console.log(score);
-                            console.log(currentResult);
                             const scoreElement = document.getElementById("score");
                             let g = score * (255 / 100);
                             let r = 255 - g;
@@ -192,21 +189,23 @@ function drawSkeletonCam(keypoints) {
 
 
 
-async function activateVideoInstrct(event) {
-    var src= "TestVideos/" + event.target.files[0].name;
+async function activateVideoInstrct(name) {
+    videoInstrct.pause();
+    var src = "TestVideos/" + name;
     sourceVideo.src = src;
     videoInstrct.load();
     videoInstrct.play();
 
-    /*
-    const videoWidth = videoInstrct.videoWidth;
-    const videoHeight = videoInstrct.videoHeight;
+    videoInstrct.width = 640;
+    videoInstrct.height = 360;
+    videoInstrct.addEventListener("playing", predictInstrctPoses);
+}
 
-
-    videoInstrct.setAttribute("width", videoWidth);
-    videoInstrct.setAttribute("height", videoHeight);
-
-     */
+async function activateSetVideoInstrct() {
+    video.pause();
+    source.setAttribute("src", "TestVideos/Yoga1.mp4");
+    videoInstrct.load();
+    videoInstrct.play();
 
     videoInstrct.width = 640;
     videoInstrct.height = 360;
@@ -215,7 +214,6 @@ async function activateVideoInstrct(event) {
 
 
 async function predictInstrctPoses() {
-    console.log(videoInstrct);
     let poses = null;
 
     if (detector != null) {
@@ -230,7 +228,7 @@ async function predictInstrctPoses() {
         }
         posesVid = poses;
 
-        if (posesVid !== undefined && posesCam !== undefined) {
+        if (posesVid !== undefined && posesVid != null && posesCam !== undefined && posesCam != null) {
             if (posesVid.length > 0 && posesCam.length > 0) {
                 currentResult = comparePositions.next(posesVid[0], posesCam[0]);
             }
@@ -241,47 +239,25 @@ async function predictInstrctPoses() {
     window.requestAnimationFrame(predictInstrctPoses);
 }
 
-/*
-async function app() {
-    //Load the model and create a detector object
-    await createDetector();
-
-    //Enable camera and activate video
-    await activateVideoCam();
-    await activateVideoInstrct();
-}
-
-app();
-
- */
 
 document.getElementById("videoButton1").onclick = function() {
     comparePositions.resetScore();
     let video = document.getElementById("videoInstrct");
     let source = document.getElementById("source");
-    video.pause();
-    source.setAttribute("src", "TestVideos/Yoga1.mp4");
-    video.load();
-    video.play();
+    startVideo("Yoga1.mp4");
 }
 
 document.getElementById("videoButton2").onclick = function() {
     comparePositions.resetScore();
     let video = document.getElementById("videoInstrct");
     let source = document.getElementById("source");
-    video.pause();
-    source.setAttribute("src", "TestVideos/Yoga2.mp4");
-    video.load();
-    video.play();
+    startVideo("Yoga2.mp4");
 }
 document.getElementById("videoButton3").onclick = function() {
     comparePositions.resetScore();
     let video = document.getElementById("videoInstrct");
     let source = document.getElementById("source");
-    video.pause();
-    source.setAttribute("src", "TestVideos/Yoga3.mp4");
-    video.load();
-    video.play();
+    startVideo("Yoga3.mp4");
 }
 
 document.getElementById("scoreView").onclick = function() {
@@ -308,13 +284,19 @@ async function combine(event) {
     if (event.target.files && event.target.files[0]) {
         await createDetector();
         await activateVideoCam();
-        await activateVideoInstrct(event);
+        await activateVideoInstrct(event.target.files[0].name);
     }
 }
 
 function handleFileSelect(event) {
-    console.log(event.target.files);
     combine(event);
 }
 
 myFile.addEventListener('change', handleFileSelect);
+
+
+async function startVideo(name) {
+    await createDetector();
+    await activateVideoCam();
+    await activateVideoInstrct(name);
+}
