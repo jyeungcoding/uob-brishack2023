@@ -52,7 +52,7 @@ export class ComparePositions {
                 sum += this.angleDiff[key];
             }
         }
-        let scoreChange = (sum / 8) - 0.6;
+        let scoreChange = (sum / 8) - 0.3;
         this.score -= scoreChange;
         if (this.score > 100) {
             this.score = 100;
