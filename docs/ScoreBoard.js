@@ -1,8 +1,8 @@
 export class ScoreBoard {
-    static addScore(fileName, score) {
+    static addScore(pathName, score) {
         let scoreBoard = this.getScoreBoard();
         scoreBoard.unshift(String(score));
-        scoreBoard.unshift(fileName);
+        scoreBoard.unshift(ScoreBoard.getFileName(pathName));
         while(scoreBoard.length > 20) {
             scoreBoard.pop();
             scoreBoard.pop();
@@ -12,6 +12,15 @@ export class ScoreBoard {
                 localStorage.setItem('fileName' + i / 2, scoreBoard[i]);
                 localStorage.setItem('score' + i / 2, scoreBoard[i + 1]);
             }
+        }
+    }
+
+    static getFileName(pathName) {
+        let index = pathName.lastIndexOf('/');
+        if (index == -1) {
+            return pathName;
+        } else {
+            return pathName.substring(++index);
         }
     }
 
