@@ -23,27 +23,32 @@
     
 </head>
 <body>
-    <div class="banner">
+    <nav class="banner">
         <h1>Yoga Companion</h1>
-    </div>
-    <div id="wrapper" class="wrapper">
-        
-        <div id="InstrctWrapper" class="video_wrapper">
-            <!--
-            <canvas id="outputInstrct" class="canvasHid"></canvas>
-            -->
-            <video id="videoInstrct" controls class="videoInstrctVis">
-                <source id="source" src="TestVideos/Yoga2.mp4" type="video/mp4">
-            </video>
+    </nav>
+    <main>
+        <div class="score">
+            <p>Hold for Score</p>
         </div>
-        <div id="camWrapper" class="video_wrapper">
-            <canvas id="outputCam"></canvas>
-            <video id="videoCam" autoplay class="self_video"></video>
+        <div id="wrapper" class="wrapper">
+
+            <div id="InstrctWrapper" class="video_wrapper">
+                <!--
+                <canvas id="outputInstrct" class="canvasHid"></canvas>
+                -->
+                <video id="videoInstrct" controls class="videoInstrctVis">
+                    <source id="source" src="TestVideos/Yoga2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div id="camWrapper" class="video_wrapper">
+                <canvas id="outputCam"></canvas>
+                <video id="videoCam" autoplay class="self_video"></video>
+            </div>
         </div>
-    </div>
-    <!-- <input type="file" accept="video/*" id="input"/> -->
-    <!--
-    <button id="webcamButton" class="Button">Start webcam</button>
-    -->
+        <!-- <input type="file" accept="video/*" id="input"/> -->
+        <!--
+        <button id="webcamButton" class="Button">Start webcam</button>
+        -->
+    </main>
 </body>
 </html>
