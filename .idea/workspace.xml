@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="58031e73-dbb7-4288-8fd2-61ae7bf7a35f" name="Changes" comment="More pointless CSS">
+      <change beforePath="$PROJECT_DIR$/docs/ComparePositions.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ComparePositions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ScoreBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ScoreBoard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/script.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MHeBsQorkyQEMzXdBEax5b0sIZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/alexandercockrean/Documents/BrisHack2023&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/TestVideos" />
+      <recent name="$PROJECT_DIR$/docs" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BrisHack2023/docs/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="58031e73-dbb7-4288-8fd2-61ae7bf7a35f" name="Changes" comment="" />
+      <created>1677428802113</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677428802113</updated>
+      <workItem from="1677428803165" duration="34350000" />
+      <workItem from="1677483777843" duration="5493000" />
+    </task>
+    <task id="LOCAL-00001" summary="Adding model to instructor video.  Janky as hell, but doing something">
+      <created>1677432886491</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677432886492</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fixing visibility of video and canvas.  Still serious jank though">
+      <created>1677433657894</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677433657894</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Progress.  Still janky">
+      <created>1677434829832</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677434829832</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Progress.  No longer janky">
+      <created>1677434936964</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677434936964</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Making it heavy">
+      <created>1677440228227</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677440228227</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Rounded corners">
+      <created>1677442212707</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677442212707</updated>
+    </task>
+    <task id="LOCAL-00007" summary="working towards user uploaded videos">
+      <created>1677462968045</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1677462968045</updated>
+    </task>
+    <task id="LOCAL-00008" summary="CSS etc.">
+      <created>1677465138268</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1677465138268</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Aesthetics">
+      <created>1677471126734</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1677471126734</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Aesthetics">
+      <created>1677471244879</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1677471244879</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Getting rid of (commenting out) webcam button as it doesn't do anything (as of yet)">
+      <created>1677471441285</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1677471441285</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Commenting out instructor canvas">
+      <created>1677471820819</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1677471820819</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Using a more slow-moving video">
+      <created>1677473175139</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1677473175139</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Changing CSS structure">
+      <created>1677478514275</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1677478514275</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Changing CSS structure">
+      <created>1677478699389</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1677478699389</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Changing CSS structure">
+      <created>1677478715555</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1677478715555</updated>
+    </task>
+    <task id="LOCAL-00017" summary="adding video selection menu">
+      <created>1677482558115</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1677482558115</updated>
+    </task>
+    <task id="LOCAL-00018" summary="adding video selection menu">
+      <created>1677483255589</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1677483255589</updated>
+    </task>
+    <task id="LOCAL-00019" summary="adding video selection menu">
+      <created>1677483485263</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1677483485263</updated>
+    </task>
+    <task id="LOCAL-00020" summary="adding video selection menu">
+      <created>1677484954950</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1677484954950</updated>
+    </task>
+    <task id="LOCAL-00021" summary="adding video selection menu">
+      <created>1677489089068</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1677489089068</updated>
+    </task>
+    <task id="LOCAL-00022" summary="More pointless CSS">
+      <created>1677490890946</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1677490890946</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Alex" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adding model to instructor video.  Janky as hell, but doing something" />
+    <MESSAGE value="Fixing visibility of video and canvas.  Still serious jank though" />
+    <MESSAGE value="Progress.  Still janky" />
+    <MESSAGE value="Progress.  No longer janky" />
+    <MESSAGE value="Making it heavy" />
+    <MESSAGE value="Rounded corners" />
+    <MESSAGE value="working towards user uploaded videos" />
+    <MESSAGE value="CSS etc." />
+    <MESSAGE value="Aesthetics" />
+    <MESSAGE value="Getting rid of (commenting out) webcam button as it doesn't do anything (as of yet)" />
+    <MESSAGE value="Commenting out instructor canvas" />
+    <MESSAGE value="Using a more slow-moving video" />
+    <MESSAGE value="Changing CSS structure" />
+    <MESSAGE value="adding video selection menu" />
+    <MESSAGE value="More pointless CSS" />
+    <option name="LAST_COMMIT_MESSAGE" value="More pointless CSS" />
+  </component>
+</project>
