@@ -49,6 +49,7 @@ body{
     position: absolute;
     background-color: rgb(14, 199, 156, 0.2);
     min-width: 8vw;
+    border-radius: 10px;
     z-index: 1;
 }
 
