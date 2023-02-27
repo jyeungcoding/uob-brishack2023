@@ -328,6 +328,30 @@ function setCamWrapperGreen() {
 
 
  */
+/*
+const videoSrc = document.querySelector("#source");
+const videoTag = document.querySelector("#videoInstrct");
+const inputTag = document.querySelector("#input");
+
+inputTag.addEventListener('change',  readVideo)
+
+function readVideo(event) {
+    console.log(event.target.files)
+    if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            console.log('loaded')
+            videoSrc.src = e.target.result
+            videoTag.load()
+        }.bind(this)
+
+        reader.readAsDataURL(event.target.files[0]);
+    }
+}
+
+
+ */
 
 async function app() {
     //Load the model and create a detector object
