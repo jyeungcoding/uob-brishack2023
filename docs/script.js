@@ -8,7 +8,7 @@ let videoCam = document.getElementById('videoCam');
 let canvasCam = document.getElementById('outputCam');
 let ctxCam = canvasCam.getContext('2d');
 let videoInstrct = document.getElementById("videoInstrct");
-let canvasInstrct = document.getElementById("outputInstrct")
+// let canvasInstrct = document.getElementById("outputInstrct")
 // let ctxInstrct = canvasInstrct.getContext('2d');
 
 let posesCam, posesVid, currentResult;
@@ -210,8 +210,8 @@ async function activateVideoInstrct() {
 
     videoInstrct.width = videoWidth;
     videoInstrct.height = videoHeight;
-    canvasInstrct.width = videoWidth;
-    canvasInstrct.height = videoHeight;
+    // canvasInstrct.width = videoWidth;
+    // canvasInstrct.height = videoHeight;
     //videoInstrct.addEventListener("playing", switchToCanvas);
     videoInstrct.addEventListener("playing", predictInstrctPoses);
 }
