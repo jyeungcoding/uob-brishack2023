@@ -9,7 +9,7 @@ let canvasCam = document.getElementById('outputCam');
 let ctxCam = canvasCam.getContext('2d');
 let videoInstrct = document.getElementById("videoInstrct");
 let canvasInstrct = document.getElementById("outputInstrct")
-let ctxInstrct = canvasInstrct.getContext('2d');
+// let ctxInstrct = canvasInstrct.getContext('2d');
 
 let posesCam, posesVid, currentResult;
 
@@ -97,7 +97,7 @@ function drawKeypointsCam(keypoints) {
 
 function drawKeypointCam(keypoint) {
     const keyName = keypoint["name"];
-    if (currentResult != undefined && keyName in currentResult) {
+    if (currentResult !== undefined && keyName in currentResult) {
         var red = currentResult[keyName] * 255;
         var green = 255 - red;
         ctxCam.fillStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
@@ -147,7 +147,7 @@ function drawSkeletonCam(keypoints) {
 
             const keyName1 = kp1["name"];
             const keyName2 = kp2["name"];
-            if (currentResult != undefined && keyName1 in currentResult && keyName2 in currentResult) {
+            if (currentResult !== undefined && keyName1 in currentResult && keyName2 in currentResult) {
                 //if (currentResult[keyName1] > 0.5) {
                 console.log(currentResult[keyName1]);
                 console.log(currentResult[keyName2]);
@@ -215,13 +215,15 @@ async function activateVideoInstrct() {
     //videoInstrct.addEventListener("playing", switchToCanvas);
     videoInstrct.addEventListener("playing", predictInstrctPoses);
 }
-
+/*
 function switchToCanvas() {
     videoInstrct.classList.remove("videoInstrctVis");
     videoInstrct.classList.add("videoInstrctHid");
     canvasInstrct.classList.remove("canvasHid");
     canvasInstrct.classList.add("canvasVis");
 }
+
+ */
 
 async function predictInstrctPoses() {
     let poses = null;
@@ -248,7 +250,7 @@ async function predictInstrctPoses() {
     window.requestAnimationFrame(predictInstrctPoses);
 }
 
-
+/*
 function drawKeypointsInstrct(keypoints) {
     ctxInstrct.fillStyle = 'Green';
     ctxInstrct.strokeStyle = 'White';
@@ -268,6 +270,8 @@ function drawKeypointInstrct(keypoint) {
     }
 }
 
+ */
+
 /* function drawKeypointsColor(keypoints) {
     const keypointInd = poseDetection.util.getKeypointIndexBySide(model);
     ctxCam.strokeStyle = 'White';
@@ -286,6 +290,8 @@ function drawKeypointInstrct(keypoint) {
     }
 } */
 
+
+/*
 function drawSkeletonInstrct(keypoints) {
     const color = "#fff";
     ctxInstrct.fillStyle = color;
@@ -306,6 +312,10 @@ function drawSkeletonInstrct(keypoints) {
 }
 
 
+ */
+
+/*
+
 function setCamWrapperRed() {
     const camWrapper = document.getElementById("camWrapper");
     camWrapper.classList.add("set_red");
@@ -316,6 +326,8 @@ function setCamWrapperGreen() {
     camWrapper.classList.add("set_green");
 }
 
+
+ */
 
 async function app() {
     //Load the model and create a detector object

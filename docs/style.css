@@ -50,8 +50,8 @@ h1{
 
 .canvasHid{
     background-color: black;
-    height: 0%;
-    width: 0%;
+    height: 0;
+    width: 0;
     visibility: hidden;
 }
 
@@ -70,15 +70,15 @@ h1{
 
 .videoInstrctHid{
     background-color: black;
-    height: 0%;
-    width: 0%;
+    height: 0;
+    width: 0;
     visibility: hidden;
 }
 
 .self_video{
     background-color: black;
-    height: 0%;
-    width: 0%;
+    height: 0;
+    width: 0;
     transform: rotateY(180deg);
     -webkit-transform:rotateY(180deg);
     -moz-transform:rotateY(180deg); 
