@@ -118,7 +118,7 @@ h1{
 }
 
 .score{
-    height: fit-content;
+    height: 2rem;
     width: fit-content;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: x-large;
@@ -126,9 +126,17 @@ h1{
     border-radius: 10px 10px 10px 10px;
     background-color: rgba(127, 255, 212, 0.7);
     padding: 1%;
-    margin-top: 5%;
-
+    margin-top: 3%;
 }
+
+.no_content {
+    height: 2rem;
+    width: fit-content;
+    opacity: 0;
+    padding: 1%;
+    margin-top: 3%;
+}
+
 
 .Button{
     height: 5%;
