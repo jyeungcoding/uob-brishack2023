@@ -70,9 +70,9 @@ async function predictCamPoses() {
                 flipHorizontal: false 
             });
         } catch (error) {
-            //detector.dispose();
-            //detector = null;
-            //alert(error);
+            detector.dispose();
+            detector = null;
+            window.location.reload();
         }
         posesCam = poses;
     }
@@ -228,7 +228,7 @@ async function predictInstrctPoses() {
         } catch (error) {
             detector.dispose();
             detector = null;
-            alert(error);
+            window.location.reload();
         }
         posesVid = poses;
 
