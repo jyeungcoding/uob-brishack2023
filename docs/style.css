@@ -237,3 +237,23 @@ h1{
 .fileInput:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
+
+.instructions {
+    text-align: justify;
+    text-justify: left;
+    height: 100%;
+    width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    border-radius: 10px 10px 10px 10px;
+    background: rgba(127, 255, 212, 0.7);
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    padding: 2%;
+}
+
+.no_size {
+    height: 0;
+    width: 0;
+    background-color: red;
+}
