@@ -197,8 +197,6 @@ async function activateVideoInstrct() {
 
     videoInstrct.width = videoWidth;
     videoInstrct.height = videoHeight;
-    canvasInstrct.width = videoWidth;
-    canvasInstrct.height = videoHeight;
     videoInstrct.addEventListener("playing", predictInstrctPoses);
 }
 

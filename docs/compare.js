@@ -54,7 +54,7 @@ export class ComparePositions {
             }
         }
         let scoreChange = (sum / 8) - 0.5;
-        this.score += scoreChange;
+        this.score -= scoreChange;
         if (this.score > 100) {
             this.score = 100;
         } else if (this.score < 0) {
@@ -112,12 +112,10 @@ export class ComparePositions {
         return userAngle;
     }
 
-    normalise() {
-        for (let key in this.angleDiff) {
-            this.angleDiff[key] = Math.abs(2 * this.angleDiff[key] / Math.PI);
-            if (this.angleDiff[key] > 1) {
-                this.angleDiff[key] = 1;
-            }
+    normalise(key) {
+        this.angleDiff[key] = Math.abs(2 * this.angleDiff[key] / Math.PI);
+        if (this.angleDiff[key] > 1) {
+            this.angleDiff[key] = 1;
         }
     }
 
@@ -137,11 +135,11 @@ export class ComparePositions {
                 let userAngle = this.getAngle(points[3], points[4], points[5]);
                 userAngle = this.armCorrection(key, points, userAngle);
                 this.angleDiff[key] = baseAngle - userAngle;
+                this.normalise(key);
             } else {
                 this.angleDiff[key] = 0.5;
             }
         }
-        this.normalise();
         this.copyExtremities();
         return this.angleDiff;
     }
