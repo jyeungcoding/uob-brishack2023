@@ -1,4 +1,5 @@
 import { ComparePositions } from "./ComparePositions.js"
+import { ScoreBoard } from "./ScoreBoard.js"
 
 const MIN_ACCURACY = 0.5;
 let comparePositions = new ComparePositions(MIN_ACCURACY);
@@ -261,5 +262,4 @@ document.getElementById("videoButton3").onclick = function() {
     video.load();
     video.play();
 }
-
 
