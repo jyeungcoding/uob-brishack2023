@@ -260,7 +260,7 @@ document.getElementById("videoButton3").onclick = function() {
     comparePositions.resetScore();
     let video = document.getElementById("videoInstrct");
     let source = document.getElementById("source");
-    startVideo("Yoga3.mp4");
+    startVideo("Yoga2.mp4");
 }
 
 document.getElementById("scoreView").onclick = function() {
