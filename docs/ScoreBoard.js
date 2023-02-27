@@ -1,4 +1,4 @@
-class ScoreBoard {
+export class ScoreBoard {
     addScore(fileName, score) {
         let scoreBoard = this.getScoreBoard();
         scoreBoard.unshift(String(score));
@@ -26,5 +26,17 @@ class ScoreBoard {
             }
         }
         return scoreBoard;
+    }
+
+    scoresAlert() {
+        let scoreBoard = this.getScoreBoard();
+        let string = "LATEST SCORES\n";
+        for (let i = 0; i < 20; i += 2) {
+            if (scoreBoard[i] != null && scoreBoard[i + 1] != null) {
+                string += (((i / 2) + 1) + '. ' + scoreBoard[i] + ': ');
+                string += (scoreBoard[i + 1] + '\n');
+            }
+        }
+        alert(string);
     }
 }
