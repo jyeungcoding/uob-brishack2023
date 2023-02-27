@@ -32,9 +32,6 @@
                 <button id="videoButton3" class="videoButton">Video 3</button>
             </div>
         </div>
-        <div class="title">
-            <h1>Yoga Companion</h1>
-        </div>
         <div class="dropdown">
             <button class="dropbtn">Scores</button>
             <div class="dropdown-content">
@@ -43,10 +40,14 @@
                 <button id="scoreClear" class="videoButton">Clear scores</button>
             </div>
         </div>
-        <form id="videoUpload">
-            <input type="file" accept="*.mp4" id="myFile" name="filename">
-            <input type="submit">
-        </form>
+        <div class="title">
+            <h1>Yoga Companion</h1>
+        </div>
+        <div class="uploadHolder">
+            <form id="videoUpload">
+                <input class="fileInput" type="file" accept="*.mp4" id="myFile" name="filename">
+            </form>
+        </div>
     </nav>
     <div id="wrapper" class="wrapper">
         <div id="score" class="no_content"></div>
