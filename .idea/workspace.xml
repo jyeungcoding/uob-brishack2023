@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58031e73-dbb7-4288-8fd2-61ae7bf7a35f" name="Changes" comment="More pointless CSS">
-      <change beforePath="$PROJECT_DIR$/docs/ComparePositions.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ComparePositions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/ScoreBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ScoreBoard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1677428802113</updated>
       <workItem from="1677428803165" duration="34350000" />
-      <workItem from="1677483777843" duration="5493000" />
+      <workItem from="1677483777843" duration="6745000" />
     </task>
     <task id="LOCAL-00001" summary="Adding model to instructor video.  Janky as hell, but doing something">
       <created>1677432886491</created>

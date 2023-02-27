@@ -42,6 +42,8 @@ async function activateVideoCam() {
     videoCam.onloadedmetadata = () => {
         const videoWidth = videoCam.videoWidth;
         const videoHeight = videoCam.videoHeight;
+        videoCam.setAttribute("width", videoWidth);
+        videoCam.setAttribute("height", videoHeight);
 
         videoCam.width = videoWidth;
         videoCam.height = videoHeight;
@@ -195,6 +197,10 @@ async function activateVideoInstrct() {
 
     const videoWidth = videoInstrct.videoWidth;
     const videoHeight = videoInstrct.videoHeight;
+
+
+    videoInstrct.setAttribute("width", videoWidth);
+    videoInstrct.setAttribute("height", videoHeight);
 
     videoInstrct.width = videoWidth;
     videoInstrct.height = videoHeight;
