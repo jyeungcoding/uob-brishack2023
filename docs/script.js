@@ -258,6 +258,7 @@ app();
  */
 
 document.getElementById("videoButton1").onclick = function() {
+    comparePositions.resetScore();
     let video = document.getElementById("videoInstrct");
     let source = document.getElementById("source");
     video.pause();
@@ -267,6 +268,7 @@ document.getElementById("videoButton1").onclick = function() {
 }
 
 document.getElementById("videoButton2").onclick = function() {
+    comparePositions.resetScore();
     let video = document.getElementById("videoInstrct");
     let source = document.getElementById("source");
     video.pause();
@@ -275,6 +277,7 @@ document.getElementById("videoButton2").onclick = function() {
     video.play();
 }
 document.getElementById("videoButton3").onclick = function() {
+    comparePositions.resetScore();
     let video = document.getElementById("videoInstrct");
     let source = document.getElementById("source");
     video.pause();
@@ -290,7 +293,7 @@ document.getElementById("scoreView").onclick = function() {
 document.getElementById("scoreSave").onclick = function() {
     let fileName = document.getElementById("source").getAttribute("src");
     let score = comparePositions.getScore();
-    ScoreBoard.addScore(fileName, score);
+    ScoreBoard.addScore(fileName, Math.round(score));
 }
 
 document.getElementById("scoreClear").onclick = function() {
