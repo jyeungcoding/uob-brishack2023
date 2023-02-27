@@ -1,5 +1,13 @@
+// this.additionalJoints = {
+//     left_shoulder: {A: 12, B: 11, C: 13},
+//     right_shoulder: {A: 11, B: 12, C: 14},
+//     left_hip: {A: 24, B: 23, C: 25}, 
+//     right_hip: {A: 23, B: 24, C: 26},
+// }
+
 export class ComparePositions {
     constructor(minScore) {
+        this.score = 50;
         this.minScore = minScore;
         this.joints = {
             left_elbow: {A: 11, B: 13, C: 15},
@@ -11,25 +19,46 @@ export class ComparePositions {
             left_knee: {A: 23, B: 25, C: 27}, 
             right_knee: {A: 24, B: 26, C: 28}
         }
-        // this.additionalJoints = {
-        //     left_shoulder: {A: 12, B: 11, C: 13},
-        //     right_shoulder: {A: 11, B: 12, C: 14},
-        //     left_hip: {A: 24, B: 23, C: 25}, 
-        //     right_hip: {A: 23, B: 24, C: 26},
-        // }
+
         this.angleDiff = {
-            left_wrist: 0, 
-            right_wrist: 0, 
-            left_elbow: 0,
-            right_elbow: 0,
-            left_shoulder: 0,
-            right_shoulder: 0,
-            left_hip: 0,
-            right_hip: 0,
-            left_knee: 0,
-            right_knee: 0,
-            left_ankle: 0, 
-            right_ankle: 0 
+            left_wrist: 0.5, 
+            right_wrist: 0.5, 
+            left_elbow: 0.5,
+            right_elbow: 0.5,
+            left_shoulder: 0.5,
+            right_shoulder: 0.5,
+            left_hip: 0.5,
+            right_hip: 0.5,
+            left_knee: 0.5,
+            right_knee: 0.5,
+            left_ankle: 0.5, 
+            right_ankle: 0.5 
+        }
+    }
+    
+    getScore() {
+        this.calculateScore();
+        return this.score;
+    }
+
+    resetScore() {
+        this.score = 50;
+    }
+
+    calculateScore () {
+        let sum = 0;
+        for (let key in this.angleDiff) {
+            if (key != 'left_wrist' && key != 'right_wrist' 
+                    && key != 'left_ankle' && key != 'right_ankle') {
+                sum += this.angleDiff[key];
+            }
+        }
+        let scoreChange = (sum / 8) - 1;
+        this.score += scoreChange;
+        if (this.score > 100) {
+            this.score = 100;
+        } else if (this.score < 0) {
+            this.score = 0;
         }
     }
 
@@ -75,11 +104,10 @@ export class ComparePositions {
     }
 
     armCorrection(key, points, userAngle) {
-        if (key == 'left_elbow' || key == 'right_elbow') {
-            if (points[2].y < points[1].y && points[5].y > points[4].y 
-                || points[2].y > points[1].y && points[5].y < points[4].y) {
-                    return userAngle = 2 * Math.PI - userAngle;
-            }
+        if ((key == 'left_elbow' || key == 'right_elbow') 
+                && ((points[1].y < points[2].y && points[4].y > points[5].y) 
+                || (points[2].y > points[2].y && points[4].y < points[5].y))) {
+            return 2 * Math.PI - userAngle;
         }
         return userAngle;
     }
@@ -93,7 +121,7 @@ export class ComparePositions {
         }
     }
 
-    extremities() {
+    copyExtremities() {
         this.angleDiff.left_wrist = this.angleDiff.left_elbow;
         this.angleDiff.right_wrist = this.angleDiff.right_elbow;
         this.angleDiff.left_ankle = this.angleDiff.left_knee;
@@ -109,10 +137,12 @@ export class ComparePositions {
                 let userAngle = this.getAngle(points[3], points[4], points[5]);
                 userAngle = this.armCorrection(key, points, userAngle);
                 this.angleDiff[key] = baseAngle - userAngle;
+            } else {
+                this.angleDiff[key] = 0.5;
             }
         }
         this.normalise();
-        this.extremities();
+        this.copyExtremities();
         return this.angleDiff;
     }
 }
