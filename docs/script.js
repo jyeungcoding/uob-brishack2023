@@ -1,8 +1,8 @@
 import { ComparePositions } from "./ComparePositions.js"
+import { ScoreBoard } from "./ScoreBoard.js"
 
 const MIN_ACCURACY = 0.5;
 let comparePositions = new ComparePositions(MIN_ACCURACY);
-
 
 let videoCam = document.getElementById('videoCam');
 let canvasCam = document.getElementById('outputCam');
@@ -139,6 +139,7 @@ function drawSkeletonCam(keypoints) {
                     ctxCam.lineTo(kp2.x, kp2.y);
                     ctxCam.stroke();
                     if (innerCount == 0) {
+                        comparePositions.calculateScore();
                         let score = comparePositions.getScore();
                         count += 1;
                         if (count % 15 == 0) {
@@ -262,4 +263,16 @@ document.getElementById("videoButton3").onclick = function() {
     video.play();
 }
 
+document.getElementById("scoreView").onclick = function() {
+    ScoreBoard.scoresAlert();
+}
 
+document.getElementById("scoreSave").onclick = function() {
+    let fileName = document.getElementById("source").getAttribute("src");
+    let score = comparePositions.getScore();
+    ScoreBoard.addScore(fileName, score);
+}
+
+document.getElementById("scoreClear").onclick = function() {
+    ScoreBoard.clearScores();
+}
