@@ -155,13 +155,8 @@ function drawSkeletonCam(keypoints) {
                     }
                     innerCount += 1;
                 }
-                
-                
             }            
     });
-    
-
-
 }
 
 
@@ -241,17 +236,30 @@ async function app() {
 
 app();
 
-function selectVideo1() {
-    let src = document.getElementById("source");
-    src.setAttribute("src", "TestVideos/Yoga1.mp4")
+document.getElementById("videoButton1").onclick = function() {
+    let video = document.getElementById("videoInstrct");
+    let source = document.getElementById("source");
+    video.pause();
+    source.setAttribute("src", "TestVideos/Yoga1.mp4");
+    video.load();
+    video.play();
 }
-function selectVideo2() {
-    let src = document.getElementById("source");
-    src.setAttribute("src", "TestVideos/Yoga2.mp4")
+
+document.getElementById("videoButton2").onclick = function() {
+    let video = document.getElementById("videoInstrct");
+    let source = document.getElementById("source");
+    video.pause();
+    source.setAttribute("src", "TestVideos/Yoga2.mp4");
+    video.load();
+    video.play();
 }
-function selectVideo3() {
-    let src = document.getElementById("source");
-    src.setAttribute("src", "TestVideos/Yoga3.mp4")
+document.getElementById("videoButton3").onclick = function() {
+    let video = document.getElementById("videoInstrct");
+    let source = document.getElementById("source");
+    video.pause();
+    source.setAttribute("src", "TestVideos/Yoga3.mp4");
+    video.load();
+    video.play();
 }
 
 
