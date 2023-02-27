@@ -31,11 +31,22 @@ h1{
     background-image: url("zen.JPG");
     background-size: cover;
     background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 
+
+}
+
+.inner_wrapper{
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    margin: -3rem;
 }
 
 .video_wrapper{
@@ -104,6 +115,19 @@ h1{
 
 .set_green{
     background-color: green;
+}
+
+.score{
+    height: fit-content;
+    width: fit-content;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: 900;
+    border-radius: 10px 10px 10px 10px;
+    background-color: rgba(127, 255, 212, 0.7);
+    padding: 1%;
+    margin-top: 5%;
+
 }
 
 .Button{

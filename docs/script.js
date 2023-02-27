@@ -119,6 +119,7 @@ function drawSkeletonCam(keypoints) {
     ctxCam.fillStyle = color;
     ctxCam.strokeStyle = color;
     ctxCam.lineWidth = 2;
+    var innerCount = 0;
 
     poseDetection.util.getAdjacentPairs(model)
         .forEach(([i, j]) => {
@@ -137,16 +138,23 @@ function drawSkeletonCam(keypoints) {
                     ctxCam.moveTo(kp1.x, kp1.y);
                     ctxCam.lineTo(kp2.x, kp2.y);
                     ctxCam.stroke();
+                    if (innerCount == 0) {
+                        let score = comparePositions.getScore();
+                        count += 1;
+                        if (count % 15 == 0) {
+                            console.log(score);
+                            console.log(currentResult);
+                            const scoreElement = document.getElementById("score");
+                            scoreElement.innerHTML = Math.round(score);
+                        }
+                    }
+                    innerCount += 1;
                 }
                 
                 
             }            
     });
-    let score = comparePositions.getScore();
-    count += 1;
-    if (count % 15 == 0) {
-        console.log(score);
-    }
+    
 
 
 }
