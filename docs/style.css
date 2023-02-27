@@ -23,9 +23,12 @@ body{
 /* Dropdown Button */
 .dropbtn {
     background-color: rgb(14, 199, 156);
+    min-height: 8vh;
+    min-width: 8vw;
     color: white;
+    font-family: 'Gilda Display', serif;
     padding: 16px;
-    font-size: 16px;
+    font-size: 20px;
     border: none;
     border-radius: 10px;
 }
@@ -54,9 +57,13 @@ body{
     background-color: rgb(14, 199, 156, 1);
     color: rgb(255, 255, 255, 1);
     width: 7vw;
+    height: 7vh;
     margin: 0.5vw;
+    font-family: 'Gilda Display', serif;
+    font-size: 18px;
     text-decoration: none;
     display: block;
+    border-radius: 8px;
 }
 
 .dropdown-content a:hover {background-color: #ddd;}
