@@ -105,7 +105,7 @@ export class ComparePositions {
     armCorrection(key, points, userAngle) {
         if ((key == 'left_elbow' || key == 'right_elbow') 
                 && ((points[1].y < points[2].y && points[4].y > points[5].y) 
-                || (points[2].y > points[2].y && points[4].y < points[5].y))) {
+                || (points[1].y > points[2].y && points[4].y < points[5].y))) {
             return 2 * Math.PI - userAngle;
         }
         return userAngle;
