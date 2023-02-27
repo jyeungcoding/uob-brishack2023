@@ -11,6 +11,7 @@ let videoInstrct = document.getElementById("videoInstrct");
 let sourceVideo = document.getElementById("source");
 let camWrapper = document.getElementById("camWrapper");
 let instructions = document.getElementById("instructions");
+var started = false;
 
 let posesCam, posesVid, currentResult;
 
@@ -50,8 +51,8 @@ async function activateVideoCam() {
 
         videoCam.width = videoWidth;
         videoCam.height = videoHeight;
-        canvasCam.width = videoWidth;
-        canvasCam.height = videoHeight;
+        canvasCam.width = 640;//videoWidth;
+        canvasCam.height = 480;//videoHeight;
         
         ctxCam.translate(videoWidth, 0);
         ctxCam.scale(-1, 1);
@@ -69,9 +70,9 @@ async function predictCamPoses() {
                 flipHorizontal: false 
             });
         } catch (error) {
-            detector.dispose();
-            detector = null;
-            alert(error);
+            //detector.dispose();
+            //detector = null;
+            //alert(error);
         }
         posesCam = poses;
     }
@@ -294,12 +295,17 @@ document.getElementById("scoreClear").onclick = function() {
 var myFile = document.getElementById("myFile");
 
 async function combine(event) {
-    instructions.remove();
-    canvasCam = document.createElement("canvas");
-    canvasCam.setAttribute('id', 'outputCam');
-    camWrapper.appendChild(canvasCam);
-    canvasCam = document.getElementById('outputCam');
-    ctxCam = canvasCam.getContext('2d');
+    if (started == false) {
+        console.log("canvas creation");
+        instructions.remove();
+        canvasCam = document.createElement("canvas");
+        canvasCam.setAttribute('id', 'outputCam');
+        camWrapper.appendChild(canvasCam);
+        canvasCam = document.getElementById('outputCam');
+        ctxCam = canvasCam.getContext('2d');
+    }
+    started = true;
+    
     if (event.target.files && event.target.files[0]) {
         await createDetector();
         await activateVideoCam();
@@ -312,13 +318,17 @@ myFile.addEventListener('change', combine);
 
 
 async function startVideo(name) {
-    instructions.remove();
-    canvasCam = document.createElement("canvas");
-    canvasCam.setAttribute('id', 'outputCam');
-    camWrapper.appendChild(canvasCam);
-    canvasCam = document.getElementById('outputCam');
-    ctxCam = canvasCam.getContext('2d');
-    await createDetector();
-    await activateVideoCam();
+    if (started == false) {
+        console.log("canvas creation");
+        instructions.remove();
+        canvasCam = document.createElement("canvas");
+        canvasCam.setAttribute('id', 'outputCam');
+        camWrapper.appendChild(canvasCam);
+        canvasCam = document.getElementById('outputCam');
+        ctxCam = canvasCam.getContext('2d');
+        await createDetector();
+        await activateVideoCam();
+    }
+    started = true;
     await activateVideoInstrct(name);
 }
