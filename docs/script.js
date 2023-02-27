@@ -8,13 +8,13 @@ let videoCam = document.getElementById('videoCam');
 let canvasCam = document.getElementById('outputCam');
 let ctxCam = canvasCam.getContext('2d');
 let videoInstrct = document.getElementById("videoInstrct");
-// let canvasInstrct = document.getElementById("outputInstrct")
-// let ctxInstrct = canvasInstrct.getContext('2d');
+let canvasInstrct = document.getElementById("outputInstrct")
 
 let posesCam, posesVid, currentResult;
 
 let detector, model;
 const scoreThreshold = 0.6;
+var count = 0;
 
 async function createDetector() {
     model = poseDetection.SupportedModels.BlazePose;
@@ -48,7 +48,6 @@ async function activateVideoCam() {
         canvasCam.width = videoWidth;
         canvasCam.height = videoHeight;
         
-        // Flip the camera image, as it is mirrored by default
         ctxCam.translate(videoWidth, 0);
         ctxCam.scale(-1, 1);
     };
@@ -115,61 +114,49 @@ function drawKeypointCam(keypoint) {
     
 }
 
-/* function drawKeypointsColor(keypoints) {
-    const keypointInd = poseDetection.util.getKeypointIndexBySide(model);
-    ctxCam.strokeStyle = 'White';
-    ctxCam.lineWidth = 2;
-    ctxCam.fillStyle = 'Red';
-    for (const i of keypointInd.middle) {
-        drawKeypointCam(keypoints[i]);
-    }
-    ctxCam.fillStyle = 'Green';
-    for (const i of keypointInd.left) {
-        drawKeypointCam(keypoints[i]);
-    }
-    ctxCam.fillStyle = 'Orange';
-    for (const i of keypointInd.right) {
-        drawKeypointCam(keypoints[i]);
-    }
-} */ 
-
 function drawSkeletonCam(keypoints) {
     const color = "#fff";
     ctxCam.fillStyle = color;
     ctxCam.strokeStyle = color;
     ctxCam.lineWidth = 2;
+    var innerCount = 0;
 
     poseDetection.util.getAdjacentPairs(model)
         .forEach(([i, j]) => {
             const kp1 = keypoints[i];
             const kp2 = keypoints[j];
-
-
             const keyName1 = kp1["name"];
             const keyName2 = kp2["name"];
             if (currentResult !== undefined && keyName1 in currentResult && keyName2 in currentResult) {
-                //if (currentResult[keyName1] > 0.5) {
-                console.log(currentResult[keyName1]);
-                console.log(currentResult[keyName2]);
                 var red = (currentResult[keyName1] + currentResult[keyName2]) * (255 / 2);
                 var green = 255 - red;
-                console.log("hello");
-                console.log(red + ", " + green);
-
                 ctxCam.fillStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
                 ctxCam.strokeStyle = "rgba(" + red + ", " + green + ", " + " 20, 0.7)";
                 ctxCam.lineWidth = 5;
-                //}
                 if (kp1.score >= scoreThreshold && kp2.score >= scoreThreshold) {
                     ctxCam.beginPath();
                     ctxCam.moveTo(kp1.x, kp1.y);
                     ctxCam.lineTo(kp2.x, kp2.y);
                     ctxCam.stroke();
+                    if (innerCount == 0) {
+                        let score = comparePositions.getScore();
+                        count += 1;
+                        if (count % 15 == 0) {
+                            console.log(score);
+                            console.log(currentResult);
+                            const scoreElement = document.getElementById("score");
+                            scoreElement.innerHTML = Math.round(score);
+                        }
+                    }
+                    innerCount += 1;
                 }
-            }
-
-            
+                
+                
+            }            
     });
+    
+
+
 }
 
 
@@ -210,20 +197,9 @@ async function activateVideoInstrct() {
 
     videoInstrct.width = videoWidth;
     videoInstrct.height = videoHeight;
-    // canvasInstrct.width = videoWidth;
-    // canvasInstrct.height = videoHeight;
-    //videoInstrct.addEventListener("playing", switchToCanvas);
     videoInstrct.addEventListener("playing", predictInstrctPoses);
 }
-/*
-function switchToCanvas() {
-    videoInstrct.classList.remove("videoInstrctVis");
-    videoInstrct.classList.add("videoInstrctHid");
-    canvasInstrct.classList.remove("canvasHid");
-    canvasInstrct.classList.add("canvasVis");
-}
 
- */
 
 async function predictInstrctPoses() {
     let poses = null;
@@ -242,116 +218,12 @@ async function predictInstrctPoses() {
 
         if (posesVid.length > 0 && posesCam.length > 0) {
             currentResult = comparePositions.next(posesVid[0], posesCam[0]);
-            console.log(poses);
         }
         
     }
 
     window.requestAnimationFrame(predictInstrctPoses);
 }
-
-/*
-function drawKeypointsInstrct(keypoints) {
-    ctxInstrct.fillStyle = 'Green';
-    ctxInstrct.strokeStyle = 'White';
-    ctxInstrct.lineWidth = 2;
-    for(let i=0; i<keypoints.length; i++) {
-        drawKeypointInstrct(keypoints[i]);
-    }
-}
-
-function drawKeypointInstrct(keypoint) {
-    const radius = 4;
-    if (keypoint.score >= scoreThreshold) {
-        const circle = new Path2D();
-        circle.arc(keypoint.x, keypoint.y, radius, 0, 2 * Math.PI);
-        ctxInstrct.fill(circle);
-        ctxInstrct.stroke(circle);
-    }
-}
-
- */
-
-/* function drawKeypointsColor(keypoints) {
-    const keypointInd = poseDetection.util.getKeypointIndexBySide(model);
-    ctxCam.strokeStyle = 'White';
-    ctxCam.lineWidth = 2;
-    ctxCam.fillStyle = 'Red';
-    for (const i of keypointInd.middle) {
-        drawKeypointCam(keypoints[i]);
-    }
-    ctxCam.fillStyle = 'Green';
-    for (const i of keypointInd.left) {
-        drawKeypointCam(keypoints[i]);
-    }
-    ctxCam.fillStyle = 'Orange';
-    for (const i of keypointInd.right) {
-        drawKeypointCam(keypoints[i]);
-    }
-} */
-
-
-/*
-function drawSkeletonInstrct(keypoints) {
-    const color = "#fff";
-    ctxInstrct.fillStyle = color;
-    ctxInstrct.strokeStyle = color;
-    ctxInstrct.lineWidth = 2;
-
-    poseDetection.util.getAdjacentPairs(model)
-        .forEach(([i, j]) => {
-            const kp1 = keypoints[i];
-            const kp2 = keypoints[j];
-            if (kp1.score >= scoreThreshold && kp2.score >= scoreThreshold) {
-                ctxInstrct.beginPath();
-                ctxInstrct.moveTo(kp1.x, kp1.y);
-                ctxInstrct.lineTo(kp2.x, kp2.y);
-                ctxInstrct.stroke();
-            }
-        });
-}
-
-
- */
-
-/*
-
-function setCamWrapperRed() {
-    const camWrapper = document.getElementById("camWrapper");
-    camWrapper.classList.add("set_red");
-}
-
-function setCamWrapperGreen() {
-    const camWrapper = document.getElementById("camWrapper");
-    camWrapper.classList.add("set_green");
-}
-
-
- */
-/*
-const videoSrc = document.querySelector("#source");
-const videoTag = document.querySelector("#videoInstrct");
-const inputTag = document.querySelector("#input");
-
-inputTag.addEventListener('change',  readVideo)
-
-function readVideo(event) {
-    console.log(event.target.files)
-    if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            console.log('loaded')
-            videoSrc.src = e.target.result
-            videoTag.load()
-        }.bind(this)
-
-        reader.readAsDataURL(event.target.files[0]);
-    }
-}
-
-
- */
 
 async function app() {
     //Load the model and create a detector object
